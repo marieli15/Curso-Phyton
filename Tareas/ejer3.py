@@ -1,14 +1,14 @@
+from eje3par2 import imprimir
 #Menu principal
 usuarios = {}
 listaregistro = []
+username = ""
 
 def Menu():
 	
 	print("1) Registrarse")
 	print("2) Ingresar")
 	print("3) Salir")
-
-
 
 def registro():
 
@@ -45,42 +45,52 @@ def registro():
 	elif (respuesta == "s"):
 		registro()
 	else:
-		print("opcion invalida")
-		
+		print("opcion invalida")	
+
 #Para ingresar datos de usuario
-def Login(usuarios):     
+def Login(usuarios): 
+
+	
 	user = input("Usuario: ")
 	passw = input("Contrasenia: ")
+	conT=usuarios.get(user)[1]
+	nom=usuarios.get(user)[2]
+	apl=usuarios.get(user)[3]
+	ed=usuarios.get(user)[4]
+	tg=usuarios.get(user)[5]
+	cuen=usuarios.get(user)[6]
+	cons=usuarios.get(user)[7]
 	    
-	    #Si el usuario esta en el diccionario, comparara posteriormente la contrasenia para ver si son correctos
-	if(user in usuarios) and (usuarios[user][1] == passw): #Si el usuario y contrasenia son correctos, dejara entrar al usuario
-		print("Bienvenido")
-		#if(user in usuarios) and (usuarios[user][1] == passw): #Si el usuario y contrasenia son correctos, dejara entrar al usuario
-		print("Bienvenido", usuarios.get(user)[2])
-		print("Apellido: ", usuarios.get(user)[3])
-		print("Edad: ", usuarios.get(user)[4])
-		print("Tarjeta de credito:", usuarios.get(user)[5])
-		print("Cuenta de paypal:", usuarios.get(user)[6])
-		print("Contraseña de paypal:", usuarios.get(user)[7])
-	
+	#Si el usuario esta en el diccionario, comparara posteriormente la contrasenia para ver si son correctos
+	if(user in usuarios) and (conT == passw): #Si el usuario y contrasenia son correctos, dejara entrar al usuario
+		
+
+		print("Bienvenido", nom)
+		print("Apellido: ", apl)
+		print("Edad: ", ed)
+		print("Tarjeta de credito:",tg )
+		print("Cuenta de paypal:", cuen)
+		print("Contraseña de paypal:", cons)
+		imprimir(nom,apl,ed,tg,cuen,cons)
 	else:
 		print("Usuario no registrado o contraseña incorrecta")
 	Menu()
 	return x
+if __name__ == "__main__":
 
-Menu()
-while True:
-	x= int(input("¿que deseas hacer?: "))
+	Menu()
+	while True:
+		x= int(input("¿que deseas hacer?: "))
 
-	if (x == 3):
-		print("Adios")
-		break
+		if (x == 3):
+			print("Adios")
+			break
 
-	elif (x == 1):
-		print("Registro")
-		registro()
-	else:
-		print("Login")
-		Login(usuarios)
-	
+		elif (x == 1):
+			print("Registro")
+			registro()
+		else:
+			print("Login")
+			Login(usuarios)
+		
 	
