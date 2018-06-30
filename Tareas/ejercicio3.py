@@ -12,65 +12,72 @@ def Menu():
 
 def registro():
 
-	usuarios[name] = listaregistro
-	name = input("Nombre de ususario: ")
+	username = input("Nombre de ususario: ")
 	password = input("Contraseña: ")
-	listaregistro.append(name)
+	listaregistro.append(username)
 	listaregistro.append(password)
+	
 	nom=input("Ingrese su nombre: ")
 	listaregistro.append(nom)
+	
 	ape=input("Ingrese su apellido: ")
 	listaregistro.append(ape)
+	
 	edad=input("Ingrese su edad: ")
 	listaregistro.append(edad)
+	
 	numtarj=input("ingrese su numero de trajeta de credito: ")
 	listaregistro.append(numtarj)
-	pp = []
+	
 	paypal=input("Ingresa un correo para tu cuenta de PayPal: ")
-	pp.append(paypal)
+	
+	listaregistro.append(paypal)
+	
 	paypalcont=input("Ingrese la contraseña de la cuenta de paypal: ")
-	pp.append(paypalcont)
-	listaregistro = listaregistro.append(pp)
+	listaregistro.append(paypalcont)
+	
+	usuarios[username] = listaregistro
 
-	while True:
-		respuesta = input("¿Quieres agregar otro usuario? s/n " )
-		if (respuesta == 'n'):
-			print("Sus datos se han guardado exitosamente")
-			break
-			Menu()
+	respuesta = input("¿Quieres agregar otro usuario? s/n " )
+	if (respuesta == 'n'):
+		print("Sus datos se han guardado exitosamente")
+		Menu()
+		return x
+	elif (respuesta == "s"):
+		registro()
+	else:
+		print("opcion invalida")
 
-		elif (respuesta == "s"):
-			registro()
-		else:
-			print("opcion invalida")
 
 #Para ingresar datos de usuario
-def Login(usuarios):
-	usuarios[username] = listaregistro	     
+def Login(usuarios):     
 	user = input("Usuario: ")
 	passw = input("Contrasenia: ")
 	    
 	    #Si el usuario esta en el diccionario, comparara posteriormente la contrasenia para ver si son correctos
 	if(user in usuarios) and (usuarios[user][1] == passw): #Si el usuario y contrasenia son correctos, dejara entrar al usuario
-		print("Bienvenido",usuarios.get(registro)[2])
-		print("Apellido: ",usuarios.get(registro)[3])
-		print("Edad: ",usuarios.get(registro)[4])
-		print("Tarjeta de credito:",usuarios.get(registro)[5])
-		print("Cuenta de paypal:",usuario(registro)[6])
-	#elif (user in usuarios) and (usuarios[user][1] = passw):: #Si el usuario no coincide en el diccionario, imprimira lo siguiente:
-		#print( "contraseña incorrecto")
+		print("Bienvenido", usuarios.get(user)[2])
+		print("Apellido: ", usuarios.get(user)[3])
+		print("Edad: ", usuarios.get(user)[4])
+		print("Tarjeta de credito:", usuarios.get(user)[5])
+		print("Cuenta de paypal:", usuarios.get(user)[6])
+		print("Contraseña de paypal:", usuarios.get(user)[7])
 	else:
 		print("Usuario no registrado o contraseña incorrecta")
-	
+	Menu()
+	return x
 
 Menu()
-x= int(input("¿que deseas hacer?"))
-if (x == 1):
-	print("Registro")
-	Registro()
-elif (x == 2):
-	print("Login")
-	Login()
-else: 
-	print("Adios")
-
+while True:
+	x= int(input("¿que deseas hacer?: "))
+	if (x == 3):
+		print("Adios")
+		break
+	elif (x == 1):
+		print("Registro")
+		registro()
+	else: 
+		print("Login")
+		Login(usuarios)
+	
+	
